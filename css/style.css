@@ -6,6 +6,19 @@ body, html {
 	width: 100% !important;
 	height: 100% !important;
 }
+
+div.line{
+	width:60%;
+	height:1.0px;
+	background-color:#ffffff;
+	margin-left: 0%;
+	margin-right: 0%;
+	/*margin-left: 10%;*/
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+
 h1 {
 	font-weight: 400;
 }
@@ -19,7 +32,12 @@ h2 {
 	text-transform: uppercase;
 	padding-bottom: 10px;
 }
-h3, h4 {
+h3 {
+	color: #333;
+	font-size: 25px;
+	font-weight: 400;
+}
+h4 {
 	color: #333;
 	font-size: 20px;
 	font-weight: 400;
@@ -182,8 +200,8 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#053740', end
 	color: rgba(255,255,255,0.9);
 }
 header .intro-text {
-	padding-top: 150px;
-	padding-bottom: 150px;
+	padding-top: 15px;
+	padding-bottom: 15px;
 }
 /* Services Section */
 #services {
@@ -389,7 +407,7 @@ img.img-circle.team-img {
 }
 /* Contact Section */
 #contact {
-	background: url(../img/contact-bg.jpg) no-repeat center top;
+	background: url(../img/main.png) no-repeat center top;
 	background-color: #7bc3d1;
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
@@ -397,7 +415,7 @@ img.img-circle.team-img {
 	-o-background-size: cover;
 }
 #contact .overlay {
-	padding: 100px 0 40px 0;
+	padding: 100px 0 10px 0;
 	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#053740+0,053740+100&1+0,0.75+100 */
 	background: -moz-linear-gradient(top, rgba(5,55,64,1) 0%, rgba(5,55,64,0.75) 100%); /* FF3.6-15 */
 	background: -webkit-linear-gradient(top, rgba(5,55,64,1) 0%, rgba(5,55,64,0.75) 100%); /* Chrome10-25,Safari5.1-6 */
