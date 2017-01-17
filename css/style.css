@@ -243,8 +243,10 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#20a6bb', end
 }
 #about .about-text {
 	margin-left: 10px;
-	display: table-cell;
-	vertical-align: middle;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	margin: auto;
 }
 #about p {
 	margin-top: 20px;
@@ -280,6 +282,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#20a6bb', end
 #diary {
 	padding: 100px 0;
 	background: #053740;
+	position: relative;
 }
 .categories {
 	padding-bottom: 30px;
