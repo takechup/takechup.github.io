@@ -243,6 +243,8 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#20a6bb', end
 }
 #about .about-text {
 	margin-left: 10px;
+	display: table-cell;
+	vertical-align: middle;
 }
 #about p {
 	margin-top: 20px;
