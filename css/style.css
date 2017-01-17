@@ -33,7 +33,7 @@ h2 {
 	padding-bottom: 10px;
 }
 h3 {
-	color: #333;
+	color: #ffffff;
 	font-size: 25px;
 	font-weight: 400;
 }
@@ -248,8 +248,34 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#20a6bb', end
 	margin-top: 20px;
 	margin-bottom: 30px;
 }
-/* Portfolio Section */
+
+/* Dairy Section */
 #portfolio {
+	padding: 100px 0;
+	color: rgba(255,255,255,0.9);
+	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#20a6bb+0,25bad0+50 */
+	background: rgb(32,166,187); /* Old browsers */
+	background: -moz-linear-gradient(top, rgba(32,166,187,1) 0%, rgba(37,186,208,1) 50%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(top, rgba(32,166,187,1) 0%, rgba(37,186,208,1) 50%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to bottom, rgba(32,166,187,1) 0%, rgba(37,186,208,1) 50%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#20a6bb', endColorstr='#25bad0', GradientType=0 ); /* IE6-9 */
+}
+#portfolio h2 {
+	color: rgba(255,255,255,0.8);
+}
+#portfolio h4 {
+	color: #0a4b55;
+}
+#portfolio .portfolio-text {
+	margin-left: 10px;
+}
+#poetfolio p {
+	margin-top: 20px;
+	margin-bottom: 30px;
+}
+
+/* Portfolio Section */
+#diary {
 	padding: 100px 0;
 	background: #053740;
 }
