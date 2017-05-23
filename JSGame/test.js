@@ -1,45 +1,93 @@
-// おまじない
 enchant();
 
-// 定数
-var SCREEN_WIDTH    = 320;
-var SCREEN_HEIGHT   = 320;
-var CHARA_IMAGE     = "http://enchantjs.com/assets/images/chara1.gif";
-var SPRITE_MAX_NUM  = 8;
+var FPS = 30;
 
-// ランダム値生成
-var randint = function(min, max) { return Math.floor( Math.random()*(max-min+1) ) + min; };
 
-// メイン処理
-window.onload = function() {
-    // ゲームオブジェクトを生成
-    var game = new Game(SCREEN_WIDTH, SCREEN_HEIGHT);
-    // 画像読み込み
-    game.preload(CHARA_IMAGE);
-    
-    // ロード完了時の処理
-    game.onload = function() {
-        var scene = game.rootScene;
-        // 背景色を変更
-        scene.backgroundColor = "black";
-        // スプライトを大量に生成
-        for (var i=0; i<SPRITE_MAX_NUM; ++i) {
-            // 画像を生成, 表示
-            var sprite = new Sprite(32, 32);
-            sprite.image = game.assets[CHARA_IMAGE];
-            sprite.moveTo( randint(0, SCREEN_WIDTH-32), randint(0, SCREEN_HEIGHT-32) )
-            sprite.ontouchstart = function() { this.parentNode.removeChild(this); };
-            scene.addChild(sprite);
-        }
-        // シーン更新時の処理
-        scene.onenterframe = function() {
-            // スプライトが全て削除されたかどうかを判定
-            if (this.childNodes.length <= 0) {
-                //console((300-game.frame)|0, ((300-game.frame)|0) + "point!!");
-            }
-        };
-    };
-    
-    // ゲーム開始
+//HTMLが読み込まれた時の処理
+window.onload = function(){
+    var game = new Core(480,320);
+
+    //画像の読み込み
+    game.preload("img/puyos.png");
+    //音声の読み込み
+    game.preload("sounds/bgm07.wav");
+
+    //ゲーム全体の動きを管理する場所
+    game.onload = function(){
+        var hello = new Label("Hello Bear");
+
+        //シーンの背景を設定
+        game.rootScene.backgroundColor = "#FFFFFF";
+        game.rootScene.addChild(hello);
+
+        //文字列の描画
+            var hello = new Label("Hello Bear");
+            hello.x = 10;
+            hello.y = 150;
+            game.rootScene.addChild(hello);
+
+        //画像の描画
+            var sprite = new Sprite(16, 16);
+            sprite.image = game.assets["img/puyos.png"];
+            game.rootScene.addChild(sprite);
+
+        //音声の再生
+            game.assets["sounds/bgm07.wav"].play();
+
+        //フレームの確認
+        game.addEventListener("enterframe",function(){
+            sprite.x += 1;
+        });
+
+        //クリックした時の処理
+        sprite.addEventListener("touchstart",function(){
+            sprite.y += 10;
+        });
+
+         //画面をタップした時の距離
+        sprite.addEventListener("touchstart",function(){
+            game.replaceScene(main);
+        });
+
+
+        //2つ目のシーン(ゲームのメインになるシーン)
+        var main = new Scene();
+        main.backgroundColor = "#FF9999";
+        //シーンにメッセージを登録
+        var secondMessage = new Label("Hello, secondScene");
+        secondMessage.x = 10;
+        secondMessage.y = 10;
+        main.addChild(secondMessage);
+
+       
+
+        //3つ目のシーン（結果発表画面）
+        var result = new Scene();
+        result.backgroundColor = "FFFFFF";
+
+        var thirdMessage = new Label("Hello");
+        thirdMessage.x = 100;
+        thirdMessage.y = 100;
+        result.addChild(thirdMessage);
+
+         main.addEventListener("touchstart",function(){
+            game.pushScene(result);
+        });
+
+
+        result.addEventListener("touchstart",function(){
+            game.replaceScene(main);
+        });
+
+
+       
+
+
+
+        //
+
+
+
+    }
     game.start();
-};
+}
