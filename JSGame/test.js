@@ -16,6 +16,7 @@ window.onload = function(){
 
     //ゲーム全体の動きを管理する場所
     game.onload = function(){
+
         var hello = new Label("Hello Bear");
 
         //シーンの背景を設定
@@ -76,8 +77,7 @@ window.onload = function(){
 
 
         for(var i=0; i< 6; ++i){
-            var ind = i;
-            console.log("test : " + ind);
+           // console.log("test : " + ind);
                 //画像の大きさを取得
                 tresureBox[i] = new Sprite(100,70);
                 //画像設定
@@ -93,11 +93,35 @@ window.onload = function(){
                 }
 
 
+        //ブルブルさせる
+        tresureBox[0].tl.rotateTo(5,5).rotateTo(-5,5).loop();
+        tresureBox[1].tl.rotateTo(5,5).rotateTo(-5,5).loop();
+        tresureBox[2].tl.rotateTo(5,5).rotateTo(-5,5).loop();
+        tresureBox[3].tl.rotateTo(5,5).rotateTo(-5,5).loop();
+        tresureBox[4].tl.rotateTo(5,5).rotateTo(-5,5).loop();
+        tresureBox[5].tl.rotateTo(5,5).rotateTo(-5,5).loop();
+
 
         //宝箱のクリック設定ーーなぜか直書きじゃないと反映されない
         tresureBox[0].addEventListener("touchstart",function(){
-            tresureBox[0].tl.moveTo(120,120,30);
+
+            //描画し直して最前面へ持ってくる
+            main.removeChild(tresureBox[0]);
+            main.addChild(tresureBox[0]);
+            //回転の初期化
+           
+            //ループの解除
+            for(var i=0; i<6; ++i)
+            {
+                tresureBox[i].tl.unloop();
+            }
+            //最大化アニメーション
+            //@TODO ここにJSタグ（広告）持ってくる
+
+            tresureBox[0].tl.moveTo(200,130,30).and().scaleTo(2,30).and().rotateTo(0,30);
+
         });
+        
         tresureBox[1].addEventListener("touchstart",function(){
             tresureBox[1].tl.moveTo(120,120,30);
         });
@@ -115,15 +139,61 @@ window.onload = function(){
         });
 
 
-
-
             　 //  main.addEventListener("touchstart",function(){
               //  game.pushScene(result);
            // });
 
+        // 衝突は各オブジェクト側で制御する。
+        //カーソルの準備
+        var cursor = new Sprite(0, 0);
+        cursor.moveTo( 0, 0 );
+        main.addChild(cursor);
+        
+        // 毎秒描画処理
+        game.addEventListener('enterframe', function() {
+            setPosition();
 
+            for(var i=0; i<6; ++i){
 
+                if( tresureBox[i].intersect( cursor ) ){
+                    if(! tresureBox[i].onMouse){
+                        tresureBox[i].onMouse = true;
+                        tresureBox[i].image = game.assets["img/wood_test.png"];
+                        //console.log("resdfg");
 
+                    }
+                } else {
+                    if(tresureBox[i].onMouse){
+                        tresureBox[i].onMouse = false;
+                        tresureBox[i].image = game.assets["img/box.png"];
+                    }
+                }   
+            }
+
+        });
+        
+        // マウス座標反映関数
+        function setPosition(){
+            window.document.onmousemove = function(e){
+                cursor.moveTo( getMousePosition(e).x-10, getMousePosition(e).y-10 );
+            };
+        }
+        // マウス座標取得関数
+        function getMousePosition(e) {
+            var obj = [];
+            if(e) {
+                // game.scaleの値が反映されている？ので割ってあげる
+                obj.x = e.pageX / game.scale;
+                obj.y = e.pageY / game.scale;
+            }
+            else {
+                obj.x = (event.x + document.body.scrollLeft)/ game.scale;
+                obj.y = (event.y + document.body.scrollTop)/ game.scale;
+            }
+            console.log(obj.x+" "+obj.y);
+            return obj;
+        }
+        ////////////////////////////////////////////////////////////////////////
 
 
         //3つ目のシーン（結果発表画面）
@@ -140,11 +210,6 @@ window.onload = function(){
         result.addEventListener("touchstart",function(){
             game.replaceScene(main);
         });
-
-
-
-
-
 
         //
 
